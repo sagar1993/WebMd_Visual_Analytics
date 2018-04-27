@@ -105,6 +105,29 @@
                 ]
             });
 
+             $("#selectpicker").on('change', function(){
+                $.getJSON("static/data/similarity.json", function(result){
+          				console.log(result[selectedTopicId]);
+          			    var color = d3.scaleOrdinal()
+          						.range(["#EDC951","#CC333F","#00A0B0"]);
+          					var margin = {top: 100, right: 100, bottom: 100, left: 100},
+          						width = Math.min(550, window.innerWidth - 10) - margin.left - margin.right,
+          						height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
+          					var radarChartOptions = {
+          						w: width,
+          						h: height,
+          						margin: margin,
+          						maxValue: 0.5,
+          						levels: 5,
+          						roundStrokes: true,
+          						color: color
+          					};
+          					data = [result[selectedTopicId].slice(0,parseInt($("#selectpicker").val()))];
+                            //Call function to draw the Radar chart
+          					RadarChart(".radarChart", data, radarChartOptions);
+          			});
+             });
+
             $('#example tbody').on('click', 'tr', function() {
                 var d = table.row(this).data();
                 if ( $(this).hasClass('selected') ) {
@@ -133,7 +156,8 @@
           					createBubbleChart('jobtype', dataBubbleChart1);
           			});
           			$.getJSON("static/data/similarity.json", function(result){
-          					var color = d3.scaleOrdinal()
+          				console.log(result[selectedTopicId]);
+          			    var color = d3.scaleOrdinal()
           						.range(["#EDC951","#CC333F","#00A0B0"]);
           					var margin = {top: 100, right: 100, bottom: 100, left: 100},
           						width = Math.min(550, window.innerWidth - 10) - margin.left - margin.right,
@@ -147,18 +171,10 @@
           						roundStrokes: true,
           						color: color
           					};
-          					data = [result[selectedTopicId]]
-          					//Call function to draw the Radar chart
+          					data = [result[selectedTopicId].slice(0,parseInt($("#selectpicker").val()))];
+                            //Call function to draw the Radar chart
           					RadarChart(".radarChart", data, radarChartOptions);
           			});
-					{% comment %}$.getJSON("static/data/questionsByTopic.txt", function(result){
-						table1 = $('#questionTable').DataTable({
-							data: result[selectedTopicId],
-							"destroy": true,
-							columns: [
-								{ data: 'questionTitle' },
-							]
-					});});{% endcomment %}
                 $.getJSON("questionsByTopic/?topicId="+selectedTopicId, function(result){
 						table1 = $('#questionTable').DataTable({
                             searching: true,
@@ -316,6 +332,12 @@
                             <div class="card-body">
                                 <!--Title-->
                                 <h4 class="card-title" style="font-family:Georgia !important;font-weight:bold;"><font color="#007399">Similar Topics</font></h4>
+                                <span><select id="selectpicker">
+                                  <option>5</option>
+                                  <option>10</option>
+                                  <option>15</option>
+                                  <option>20</option>
+                                </select></span>
                                 <div class="radarChart"></div>
                             </div>
 
