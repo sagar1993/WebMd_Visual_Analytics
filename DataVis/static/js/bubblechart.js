@@ -1,7 +1,7 @@
 function createBubbleChart(type,dataBubbleChart) {
     var diameter = 550,
-        format = d3.format(",d"),
-        color = d3.scaleOrdinal(d3.schemeCategory20);
+        format = d3.format(",d");
+
 
     var bubble = d3.pack()
         .size([diameter, diameter])
@@ -9,12 +9,14 @@ function createBubbleChart(type,dataBubbleChart) {
 
     if(type == "workplace") {
       $('#workplace').empty();
+      var color = d3.scaleOrdinal(d3["schemeDark2"]);
       var svg = d3.select("#workplace").append("svg")
           .attr("width", diameter)
           .attr("height", diameter)
           .attr("class", "bubble");
     } else if(type == "jobtype") {
       $('#jobtype').empty();
+      var color = d3.scaleOrdinal(d3["schemeSet2"]);
       var svg = d3.select("#jobtype").append("svg")
           .attr("width", diameter)
           .attr("height", diameter)
