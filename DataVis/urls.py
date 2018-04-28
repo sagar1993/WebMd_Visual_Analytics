@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from DataVis.views import MainPageView, pie_chart_data, get_questions_by_topic
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -23,3 +26,5 @@ urlpatterns = [
     url(r'^pie_chart_data/$', pie_chart_data, name='pie_chart', ),
     url(r'^questionsByTopic/$', get_questions_by_topic, name='questionsByTopic', ),
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

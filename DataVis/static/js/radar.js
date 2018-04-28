@@ -275,7 +275,7 @@ function RadarChart(id, data, options) {
 						roundStrokes: true,
 						color: color
 					};
-					data = [result[selectedTopicId].slice(0,parseInt($("#selectpicker").val()))];
+					data = [result[selectedTopicId]];
 					//Call function to draw the Radar chart
 					RadarChart(".radarChart", data, radarChartOptions);
 			});
@@ -359,7 +359,7 @@ $.getJSON("static/data/similarity.json", function(result){
 			roundStrokes: true,
 			color: color
 		};
-		data = [result[selectedTopicId].slice(0,parseInt($("#selectpicker").val()))];
+		data = [result[selectedTopicId]];
 		//Call function to draw the Radar chart
 		RadarChart(".radarChart", data, radarChartOptions);
 });

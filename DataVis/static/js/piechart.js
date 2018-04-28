@@ -136,7 +136,7 @@ function drawPieChart(data) {
         					roundStrokes: true,
         					color: color
         				};
-        				data = [result[selectedTopicId].slice(0,parseInt($("#selectpicker").val()))];
+        				data = [result[selectedTopicId]];
         				//Call function to draw the Radar chart
         				RadarChart(".radarChart", data, radarChartOptions);
       			});

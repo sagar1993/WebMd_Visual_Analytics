@@ -122,7 +122,7 @@
           						roundStrokes: true,
           						color: color
           					};
-          					data = [result[selectedTopicId].slice(0,parseInt($("#selectpicker").val()))];
+          					data = [result[selectedTopicId]];
                             //Call function to draw the Radar chart
           					RadarChart(".radarChart", data, radarChartOptions);
           			});
@@ -171,7 +171,7 @@
           						roundStrokes: true,
           						color: color
           					};
-          					data = [result[selectedTopicId].slice(0,parseInt($("#selectpicker").val()))];
+          					data = [result[selectedTopicId]];
                             //Call function to draw the Radar chart
           					RadarChart(".radarChart", data, radarChartOptions);
           			});
@@ -331,13 +331,7 @@
                             <!--Card content-->
                             <div class="card-body">
                                 <!--Title-->
-                                <h4 class="card-title" style="font-family:Georgia !important;font-weight:bold;"><font color="#007399">Similar Topics</font></h4>
-                                <span><select id="selectpicker">
-                                  <option>5</option>
-                                  <option>10</option>
-                                  <option>15</option>
-                                  <option>20</option>
-                                </select></span>
+                                <h4 class="card-title" style="font-family:Georgia !important;font-weight:bold;"><font color="#007399">Similar Topics (>25%)</font></h4>
                                 <div class="radarChart"></div>
                             </div>
 
