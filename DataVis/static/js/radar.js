@@ -244,7 +244,7 @@ function RadarChart(id, data, options) {
 					tableRow.classList.add("selected");
 				}
 			}
-			$.getJSON("/data/topJobLocationAnsweringQuesByTopic.json", function(result){
+			$.getJSON("static/data/topJobLocationAnsweringQuesByTopic.json", function(result){
 					var dataBubbleChart = {
 						"name": "workplace",
 						"children": result[selectedTopicId]
